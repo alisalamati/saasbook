@@ -3,14 +3,14 @@ PheonixOJ::Application.routes.draw do
   devise_for :users
 
   get '/status', to: 'submissions#index', as: 'status'
-
+  root to: 'OnlineJudge#index'
+  resources :messages
   resources :problems do
     resources :discusses
     resources :submissions
   end
+  
 
-
-  root to: 'OnlineJudge#index'
   get '/faq', to: 'faq#index', as: 'faq'
   get '/forum', to: 'forum#index', as: 'forum'
   get 'users/:id', to: 'users#show', as: 'users'

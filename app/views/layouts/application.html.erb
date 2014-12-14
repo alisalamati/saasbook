@@ -52,6 +52,14 @@
                   <li><%= link_to "Show User Profile", users_path(current_user) %></li>
                   <li><%= link_to "Edit User Profile", edit_user_registration_path %></li>
                   <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+                  <% number = 0 %>
+                  <% current_user.messages.each do |message| %>
+                        <% if (message.receiver_ID == current_user.id) && (message.state == false) && (message.receiver_delete == false) then %>
+                                <% number += 1 %>
+                        <% end %>
+                  <% end %>
+ 
+                    <li><%= link_to "Message:#{number}", messages_path %></li>
                 </ul>
               </li>
             </ul>
@@ -114,5 +122,8 @@
               <button class="btn" data-dismiss="modal">Close</button>
             </div>
             <% end %>
-</div>
+</div> 
+
+
+
 </html>
